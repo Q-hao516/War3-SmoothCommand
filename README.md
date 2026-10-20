@@ -1,107 +1,105 @@
-# 魔兽争霸III · 流畅指挥
+# Warcraft III · Smooth Command
 
 <p align="center">
-  <img src="https://img.shields.io/badge/%E9%AD%94%E5%85%BD%E7%89%88%E6%9C%AC-1.24b%20~%201.27a-8a2be2" alt="支持的魔兽版本 1.24b ~ 1.27a">
-  <img src="https://img.shields.io/badge/%E6%A8%A1%E5%BC%8F-%E4%BB%85%E5%8D%95%E6%9C%BA-orange" alt="仅单机">
+  <img src="https://img.shields.io/badge/game%20version-1.24b%20~%201.27a-8a2be2" alt="Supported game versions 1.24b ~ 1.27a">
+  <img src="https://img.shields.io/badge/mode-single--player%20only-orange" alt="Single-player only">
 </p>
 
 <p align="center">
-  <b>中文</b> · <a href="./README.en.md">English</a>
+  <b>English</b> · <a href="./README.zh.md">中文</a>
 </p>
 
-**框一大片单位点过去，以前要等好几秒才陆续动；装上之后快得多。**
+**Select a large group of units and order them across the map. They used to start trickling out over several seconds; now they respond much sooner.**
 
-单点一个单位：场上 240 个单位在动时，响应从 **4.2 秒**缩短到 **0.3 秒**。
+**A single unit command with 240 units already moving: latency drops from 4.2 s to 0.3 s.**
 
-> ⚠️ 仅限单机。请不要用于对战平台或任何联网对战。
+> ⚠️ Single-player only. Do **not** use it on Battle.net or any online/ladder game.
 
-支持版本：**1.24b / 1.24e / 1.25b / 1.26 / 1.27a** · 实验性 · Windows
-
----
-
-## 目录
-
-- [它做什么](#它做什么)
-- [实测效果](#实测效果)
-- [怎么装](#怎么装)
-- [怎么确认生效](#怎么确认生效)
-- [什么时候别用](#什么时候别用)
-- [常见问题](#常见问题)
-- [合规与免责](#合规与免责)
+Supported versions: **1.24b / 1.24e / 1.25b / 1.26 / 1.27a** · Experimental · Windows
 
 ---
 
-## 它做什么
+## Contents
 
-大批单位一起移动时，游戏会把移动命令排成一条队，一个个慢慢放行，所以你会看到「点了半天，单位才陆续动」。
+- [What it does](#what-it-does)
+- [Measured results](#measured-results)
+- [Install](#install)
+- [How to verify](#how-to-verify)
+- [When not to use it](#when-not-to-use-it)
+- [FAQ](#faq)
+- [Compliance and disclaimer](#compliance-and-disclaimer)
 
-流畅指挥让这些命令不用再挤同一条队。它**不会**让游戏跑得更快，也**不会**让画面更顺——只是让单位更早开始动。
+---
 
-## 实测效果
+## What it does
 
-| 情况 | 原版 | 装上之后 |
+When a large number of units move at once, the game funnels their move orders through a single queue and releases them one at a time. That is why a big attack order feels like "I clicked ages ago, and units are only now starting to move".
+
+Smooth Command removes that funnel. It does **not** make the game faster and it does **not** make the framerate smoother — it simply lets your units start moving earlier.
+
+## Measured results
+
+| Scenario | Stock game | With this patch |
 |---|---|---|
-| 场上 240 个单位在动，单点其中一个 | 4.2 秒 | **0.3 秒** |
-| 一大批单位 A 过去 · 大多数单位起步 | 3.3 秒 | **1.2 秒** |
-| 一大批单位 A 过去 · 最后一个动 | 19.9 秒 | **10.3 秒** |
-| 真实混战图（236 个单位）· 大多数单位起步 | 2.8 秒 | **0.7 秒** |
+| Single unit command, 240 units already moving | 4.2 s | **0.3 s** |
+| Mass attack order · most units start moving | 3.3 s | **1.2 s** |
+| Mass attack order · last unit starts moving | 19.9 s | **10.3 s** |
+| Realistic battle map (236 units) · most units start moving | 2.8 s | **0.7 s** |
 
-数据来自自建的测试图；不同测试场景的数字不能互相替代。
+Numbers come from purpose-built test maps; results from different scenarios are not interchangeable.
 
-## 怎么装
+## Install
 
-1. 从 [Releases](https://github.com/Q-hao516/War3-SmoothCommand/releases/latest) 下载发布文件。
-   浏览器可能对 `.exe` 提示"不受信任"，因此发布同时提供 `_portable.zip`，
-   解压后里面有安装包和一份 `安装说明.txt`，跟着做即可。
-2. 运行安装包，在向导里选中**魔兽争霸III 的根目录**（目录中要有 `War3.exe`）。
-3. 装完直接双击游戏本来的图标即可，不需要再运行别的程序。
+1. Download the release files from [Releases](https://github.com/Q-hao516/War3-SmoothCommand/releases/latest).
+   Browsers may warn that a `.exe` is "not trusted", so a `_portable.zip` is published alongside it.
+   Unpack it — it contains the installer plus a `安装说明.txt` walkthrough (in Chinese).
+2. Run the installer and point the wizard at your **Warcraft III root directory** (the folder that contains `War3.exe`).
+3. After setup, just launch the game with your normal shortcut — nothing else to run.
 
-> 安装会改动游戏目录里的一个文件（原版会被备份），卸载时会自动还原，不动游戏本体。
->
-> 关于杀毒软件可能误报的说明，见 [SECURITY.md](SECURITY.md)。
+> Setup replaces one file inside the game folder (the original is backed up and restored on uninstall). Your game itself is never modified.
 
-## 怎么确认生效
+## How to verify
 
-- 最直接的办法：开一张单位多的图，框一大片点过去，看是不是快多了。
-- 没感觉？把游戏**完全退出**后再启动一次。
+- The simplest check: open a map with many units, select a big group, order them across the map, and see whether they react much sooner.
+- No difference? Quit the game **completely**, then start it again.
 
-## 什么时候别用
+## When not to use it
 
-> 下面这几种情况请直接不要用。
+> In the cases below, please simply do not use it.
 
-- **对战平台、天梯、任何联机对战。** 它会在运行时改动游戏内存，平台可能判定为篡改。
-- **要看回放、要复盘。** 装了之后回放和原版对不上。
-- **要「公平」对局。** AI 单位也会一起变快。
+- **Battle.net, ladder, or any online match.** It modifies game memory at runtime, which such platforms may treat as tampering.
+- **Watching or studying replays.** Replays made with this patch will not match the stock game.
+- **If you want a "fair" match.** AI-controlled units also get faster.
 
-## 常见问题
+## FAQ
 
-**Q1：会不会被封号？**
-它自己不联网，但对战平台有可能把内存改动判成篡改。**有风险，所以别在上面用。**
+**Q1: Can I get banned?**
+It does not go online by itself, but platforms may flag memory modification as tampering. **There is a risk, so do not use it there.**
 
-**Q2：支持哪些游戏版本？**
-1.24b / 1.24e / 1.25b / 1.26 / 1.27a。同一个安装包会自己识别版本；其它版本装了不会生效，也不会弄坏游戏。
+**Q2: Which game versions are supported?**
+1.24b / 1.24e / 1.25b / 1.26 / 1.27a. A single installer detects the version by itself. Other versions can be installed safely but the patch will not apply.
 
-**Q3：装了没生效？**
-先把魔兽完全退出，再启动一次。还不行就双击魔兽目录里的 `Start-War3-Unlock.bat` 启动。
+**Q3: It does not seem to work.**
+Quit Warcraft III completely and launch it again. If it still does nothing, start the game with `Start-War3-Unlock.bat` in the Warcraft III folder.
 
-**Q4：狂点移动命令会更快吗？**
-不会，反而更慢。重复下令会让单位重新排队。
+**Q4: Will spamming move orders make units faster?**
+No — it makes them slower. Repeating an order puts the unit back in the queue.
 
-**Q5：最多能带多少单位？**
-500–700 个比较舒服；到 1000 左右还是会开始明显排队。
+**Q5: How many units can I handle?**
+500–700 units feels comfortable; around 1000 units the queueing becomes noticeable again.
 
-**Q6：怎么卸载？**
-控制面板 → 程序和功能 → 找到本项卸载。会还原安装时改动的文件，不会动游戏本体。
+**Q6: How do I uninstall?**
+Control Panel → Programs and Features → find this entry. It restores the files changed during setup and leaves the game itself untouched.
 
-**Q7：会不会把游戏弄崩？**
-属于实验性工具，复杂地形、复杂技能、多人地图都还没充分验证，请自己评估。
+**Q7: Can it crash the game?**
+This is an experimental tool. Complex terrain, complex abilities, and multiplayer maps have not been thoroughly validated — evaluate for yourself.
 
-**Q8：带帧率解锁吗？**
-不带。帧率解锁是第三方作品、没有可用的许可证，本发布不打包；需要的话请自行安装上游。
+**Q8: Does it include the FPS unlock?**
+No. The FPS unlock is a third-party work without an available license, so it is not bundled here. If you need it, install the upstream project yourself.
 
-## 合规与免责
+## Compliance and disclaimer
 
-- 本仓库与 Release **不包含、也不提供**任何暴雪娱乐的二进制文件（`Game.dll`、`War3.exe`、`*.mpq` 等），也没有它们的下载链接。
-- 魔兽争霸III 及相关素材的版权归暴雪娱乐所有；本项目与暴雪娱乐没有关联，也没有获得授权或背书。
-- **仅限单机使用，自担风险**（可能遇到游戏崩溃、存档或回放异常、被平台判为篡改）。
-- 如权利人认为本项目侵犯其权益，请通过 Issue 联系我们，我们会立即下架相关资源。
+- This repository and its release **do not contain or provide** any Blizzard Entertainment binaries (`Game.dll`, `War3.exe`, `*.mpq`, etc.), nor links to download them.
+- Warcraft III and related assets are the property of Blizzard Entertainment. This project is not affiliated with, endorsed by, or sponsored by Blizzard Entertainment.
+- **Single-player use only, at your own risk** (possible crashes, save/replay anomalies, or platform tampering flags).
+- If a rights holder believes this project infringes their rights, please open an Issue and we will take the relevant resources down immediately.
