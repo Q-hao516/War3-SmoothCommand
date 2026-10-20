@@ -50,11 +50,15 @@
 
 ## 怎么装
 
-1. 从 [Releases](https://github.com/Q-hao516/War3-SmoothCommand/releases/latest) 下载最新的安装包。
+1. 从 [Releases](https://github.com/Q-hao516/War3-SmoothCommand/releases/latest) 下载发布文件。
+   浏览器可能对 `.exe` 提示"不受信任"，因此发布同时提供 `_portable.zip`，
+   解压后里面有安装包和一份 `安装说明.txt`，跟着做即可。
 2. 运行安装包，在向导里选中**魔兽争霸III 的根目录**（目录中要有 `War3.exe`）。
 3. 装完直接双击游戏本来的图标即可，不需要再运行别的程序。
 
 > 安装会改动游戏目录里的一个文件（原版会被备份），卸载时会自动还原，不动游戏本体。
+>
+> 关于杀毒软件可能误报的说明，见 [SECURITY.md](SECURITY.md)。
 
 ## 怎么确认生效
 

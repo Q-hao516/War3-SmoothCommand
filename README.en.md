@@ -51,11 +51,15 @@ Numbers come from purpose-built test maps; results from different scenarios are 
 
 ## Install
 
-1. Download the latest installer from [Releases](https://github.com/Q-hao516/War3-SmoothCommand/releases/latest).
-2. Run it and point the wizard at your **Warcraft III root directory** (the folder that contains `War3.exe`).
+1. Download the release files from [Releases](https://github.com/Q-hao516/War3-SmoothCommand/releases/latest).
+   Browsers may warn that a `.exe` is "not trusted", so a `_portable.zip` is published alongside it.
+   Unpack it — it contains the installer plus a `安装说明.txt` walkthrough (in Chinese).
+2. Run the installer and point the wizard at your **Warcraft III root directory** (the folder that contains `War3.exe`).
 3. After setup, just launch the game with your normal shortcut — nothing else to run.
 
 > Setup replaces one file inside the game folder (the original is backed up and restored on uninstall). Your game itself is never modified.
+>
+> About possible antivirus false positives, see [SECURITY.md](SECURITY.md).
 
 ## How to verify
 
