@@ -5,6 +5,10 @@
   <img src="https://img.shields.io/badge/%E6%A8%A1%E5%BC%8F-%E4%BB%85%E5%8D%95%E6%9C%BA-orange" alt="仅单机">
 </p>
 
+<p align="center">
+  <b>中文</b> · <a href="./README.en.md">English</a>
+</p>
+
 **框一大片单位点过去，以前要等好几秒才陆续动；装上之后快得多。**
 
 单点一个单位：场上 240 个单位在动时，响应从 **4.2 秒**缩短到 **0.3 秒**。
