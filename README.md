@@ -29,7 +29,6 @@ Supported versions: **1.24b / 1.24e / 1.25b / 1.26 / 1.27a** · Experimental · 
 - [When not to use it](#when-not-to-use-it)
 - [FAQ](#faq)
 - [Compliance and disclaimer](#compliance-and-disclaimer)
-- [Demo video](#demo-video)
 
 ---
 
@@ -118,9 +117,3 @@ This is an experimental tool. Complex terrain, complex abilities, and multiplaye
 - Warcraft III and related assets are the property of Blizzard Entertainment. This project is not affiliated with, endorsed by, or sponsored by Blizzard Entertainment.
 - **Single-player use only, at your own risk** (possible crashes, save/replay anomalies, or platform tampering flags).
 - If a rights holder believes this project infringes their rights, please open an Issue and we will take the relevant resources down immediately.
-
-## Demo video
-
-**▶ [Watch the demo — `v3_audio.mp4` (14.7 MB, H.264)](./video/v3_audio.mp4)**
-
-Click the link: GitHub opens `.mp4` files with a built-in player, so it plays right in the browser.

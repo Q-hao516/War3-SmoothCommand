@@ -14,7 +14,6 @@
 - `build.bat` 一键编译（MSVC x86，自动定位 Visual Studio）
 - `package.bat` 编译 + 同步 payload + 调用 Inno Setup 打包
 - `docs/DESIGN.md` —— 队列原理、逆向依据、实测结论与已排除的方向
-- 演示视频 `video/v3_audio.mp4`（14.7 MB，H.264），README 中英版末尾均提供播放入口
 
 **移除**
 
