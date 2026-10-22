@@ -111,9 +111,6 @@ Control Panel → Programs and Features → find this entry. It restores the fil
 **Q7: Can it crash the game?**
 This is an experimental tool. Complex terrain, complex abilities, and multiplayer maps have not been thoroughly validated — evaluate for yourself.
 
-**Q8: Does it include the FPS unlock?**
-No. The FPS unlock is a third-party work without an available license, so it is not bundled here. If you need it, install the upstream project yourself.
-
 ## Compliance and disclaimer
 
 - This repository and its release **do not contain or provide** any Blizzard Entertainment binaries (`Game.dll`, `War3.exe`, `*.mpq`, etc.), nor links to download them.

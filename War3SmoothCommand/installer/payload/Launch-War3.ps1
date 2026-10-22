@@ -1,5 +1,5 @@
-﻿# -*- coding: utf-8 -*-
-# 魔兽争霸III 启动器：帧率解锁 + 流畅指挥
+# -*- coding: utf-8 -*-
+# 魔兽争霸III 启动器：流畅指挥
 # 由 Start-War3-Unlock.bat 调用；也可以单独运行本脚本。
 #
 # 补丁只有一个 SlotPatch.dll，它自己按 Game.dll 版本分派：
@@ -17,7 +17,7 @@ function Say($m) { Write-Host $m }
 
 Say ''
 Say '============================================================'
-Say '  魔兽争霸III   帧率解锁 + 流畅指挥'
+Say '  魔兽争霸III   流畅指挥'
 Say '============================================================'
 Say ''
 
@@ -68,8 +68,7 @@ if ($running.Count -gt 0) {
 }
 
 # ---- 注入所需的环境变量 ----
-$env:PATH_FPSMIX = '1'   # 让 SlotPatch 尝试加载游戏根目录的 FPSUnlocker.mix
-foreach ($k in 'PATH_HOOK','PATH_SLOT','PATH_RLS','PATH_FPS','PATH_AV','PATH_WQ','PATH_TM','PATH_PH','PATH_RET','PATH_BR','PATH_STAT','PATH_FD','PATH_SFD') {
+foreach ($k in 'PATH_HOOK','PATH_SLOT','PATH_RLS','PATH_AV','PATH_WQ','PATH_TM','PATH_PH','PATH_RET','PATH_BR','PATH_STAT','PATH_FD','PATH_SFD') {
     Remove-Item "Env:$k" -ErrorAction SilentlyContinue
 }
 
@@ -91,16 +90,15 @@ if ($rc -ne 0) {
 # ---- 等待并自动校验 ----
 Say ''
 Say '  正在校验补丁状态...'
-$fpsOk = $false; $slotOk = $false; $unsupported = $false; $menuWait = $false
+$slotOk = $false; $unsupported = $false; $menuWait = $false
 for ($i = 0; $i -lt 30; $i++) {
     Start-Sleep -Milliseconds 500
     if (Test-Path $log) {
         $txt = Get-Content $log -Raw -ErrorAction SilentlyContinue
         if ($txt -match 'slot patch applied') { $slotOk = $true }
         if ($txt -match 'no profile matched') { $unsupported = $true }
-        if ($txt -match 'fpsmix LoadLibrary\(.*\)=1?[0-9A-Fa-f]{6,}\s+err=0') { $fpsOk = $true }
         if ($txt -match 'SlotPatch\.dll loaded' -and $txt -notmatch 'attached') { $menuWait = $true }
-        if ($slotOk -and $fpsOk) { break }
+        if ($slotOk) { break }
         if ($unsupported) { break }
     }
 }
@@ -113,9 +111,6 @@ elseif ($menuWait) {
     Say '                   （Game.dll 在地图加载时才载入，进入一张地图后自动生效）'
 }
 else { Say '  [--] 流畅指挥    未确认（可完全退出游戏后再启动一次）' }
-if ($fpsOk)  { Say '  [OK] 帧率解锁    已生效（游戏内输入 /fps 可查看帧率）' }
-elseif ($menuWait) { Say '  [..] 帧率解锁    将随地图加载一并生效' }
-else { Say '  [--] 帧率解锁    未确认（请确认游戏根目录存在 FPSUnlocker.mix，或上游无许可未随包提供）' }
 Say ''
 Say '  提示：进入地图后可再查看 patch\SlotPatch.log 确认补丁已打上。'
 Say '  游戏窗口已打开，本窗口 6 秒后自动关闭。'

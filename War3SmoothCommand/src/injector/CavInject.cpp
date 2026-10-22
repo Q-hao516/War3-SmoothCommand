@@ -107,7 +107,7 @@ int main(int argc, char **argv)
     si.cb = sizeof(si);
     ZeroMemory(&pi, sizeof(pi));
 
-    // 环境变量从本进程继承：PATH_HOOK / PATH_SLOT / PATH_FPSMIX
+    // 环境变量从本进程继承：PATH_HOOK / PATH_SLOT / SLOT_DRY
     if (!CreateProcessA(NULL, cmd, NULL, NULL, FALSE, CREATE_SUSPENDED, NULL, game, &si, &pi)) {
         printf("[X] 启动失败 (CreateProcess err=%lu)\n", GetLastError());
         return 2;

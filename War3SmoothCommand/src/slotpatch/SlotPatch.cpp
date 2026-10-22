@@ -183,55 +183,6 @@ static bool WriteBytes(void *addr, const void *src, size_t len)
     return true;
 }
 
-// ---------------------------------------------------------------- 帧率解锁（可选）
-
-// 从旧 PathParallel_probe.dll 并入：1.24e 的 Mss32 不扫描 .mix，必须显式 LoadLibrary。
-//
-// 默认关闭、显式开启的原因：
-//   1) 该 mix 上游无 LICENSE 声明，不宜随包分发/默认启用；
-//   2) 帧率解锁对单位延迟无收益（已实测），属可选外观项。
-// 注：早期曾把一次 ACCESS_VIOLATION 误判为 mix 加载时机问题，实际根因是
-//     ijl15 代理的导出序号映射错误（见 proxy/ijl15_proxy.cpp 顶部说明）。
-//   * 设 PATH_FPSMIX=1 或 SLOT_FPSMIX=1 才尝试（文件缺失只记日志，不影响补丁）；
-//   * 设 SLOT_NO_FPSMIX=1 强制关闭（优先级最高）。
-static void LoadFpsMixIfRequested(void)
-{
-    char off[8] = {0};
-    if (GetEnvironmentVariableA("SLOT_NO_FPSMIX", off, sizeof(off)) > 0)
-    {
-        LogA("fpsmix: disabled by SLOT_NO_FPSMIX, skipped");
-        return;
-    }
-
-    char fm[8] = {0};
-    if (GetEnvironmentVariableA("PATH_FPSMIX", fm, sizeof(fm)) == 0 &&
-        GetEnvironmentVariableA("SLOT_FPSMIX", fm, sizeof(fm)) == 0)
-    {
-        LogA("fpsmix: not requested (set PATH_FPSMIX=1 to enable), skipped");
-        return;
-    }
-
-    // FPSUnlocker.mix 必须在 War3.exe 所在目录（游戏根目录）
-    char dir[MAX_PATH] = {0};
-    if (!GetModuleFileNameA(NULL, dir, MAX_PATH))
-    {
-        LogA("fpsmix: GetModuleFileName failed, err=%lu", GetLastError());
-        return;
-    }
-    char *s = strrchr(dir, '\\');
-    if (s) *(s + 1) = 0;
-    strncat(dir, "FPSUnlocker.mix", MAX_PATH - strlen(dir) - 1);
-
-    if (GetFileAttributesA(dir) == INVALID_FILE_ATTRIBUTES)
-    {
-        LogA("fpsmix LoadLibrary(%s)=0 err=2 (file not found)", dir);
-        return;
-    }
-
-    HMODULE hm = LoadLibraryA(dir);
-    LogA("fpsmix LoadLibrary(%s)=%p err=%lu", dir, hm, GetLastError());
-}
-
 // ---------------------------------------------------------------- 检测与打补丁
 
 // 从已加载模块的 PE 头读取 SizeOfImage，用于越界校验。
@@ -392,10 +343,6 @@ static DWORD WINAPI WorkerProc(LPVOID)
     }
 
     ApplySlotPatch(game);
-
-    // 帧率解锁放在最后加载：实测在游戏初始化之前 LoadLibrary(FPSUnlocker.mix)
-    // 会让 War3 启动后立即退出；旧 PathParallel 也是在 Game.dll 载入之后才加载。
-    LoadFpsMixIfRequested();
     return 0;
 }
 
