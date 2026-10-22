@@ -1,0 +1,23 @@
+# build artifacts
+build/
+installer/dist/
+*.obj
+*.exp
+*.lib
+*.pdb
+*.ilk
+
+# payload binaries are produced by build.bat / package.bat
+installer/payload/*.dll
+installer/payload/*.exe
+installer/payload/*.mix
+
+# runtime logs
+*.log
+ProxyLoad.log
+
+# local backups / scratch
+*.bak
+*.bak_*
+*.orig
+*.pre_*

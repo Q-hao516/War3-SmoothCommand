@@ -25,6 +25,7 @@ Supported versions: **1.24b / 1.24e / 1.25b / 1.26 / 1.27a** · Experimental · 
 - [Measured results](#measured-results)
 - [Install](#install)
 - [How to verify](#how-to-verify)
+- [Source code](#source-code)
 - [When not to use it](#when-not-to-use-it)
 - [FAQ](#faq)
 - [Compliance and disclaimer](#compliance-and-disclaimer)
@@ -62,6 +63,22 @@ Numbers come from purpose-built test maps; results from different scenarios are 
 
 - The simplest check: open a map with many units, select a big group, order them across the map, and see whether they react much sooner.
 - No difference? Quit the game **completely**, then start it again.
+
+## Source code
+
+The complete, buildable source is published in [`War3SmoothCommand/`](./War3SmoothCommand):
+
+| Path | What it is |
+|---|---|
+| `src/slotpatch/SlotPatch.cpp` | The patch itself — version-dispatched byte patches, ~400 lines |
+| `src/proxy/ijl15_proxy.cpp` | The `ijl15.dll` proxy that auto-loads the patch, so the normal shortcut works |
+| `src/injector/CavInject.cpp` | The portable launcher/injector (`-game` / `-dll` / `-map`) |
+| `installer/War3Unlock.iss` | Inno Setup script used to build the installer |
+| `docs/DESIGN.md` | How the queue works, and what was actually measured |
+
+Build with `build.bat` (needs Visual Studio with the "Desktop development with C++" workload);
+`package.bat` additionally produces the installer EXE if Inno Setup 6 is installed.
+No Blizzard binaries are included — you build against your own game installation.
 
 ## When not to use it
 

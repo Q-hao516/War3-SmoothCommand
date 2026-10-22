@@ -25,6 +25,7 @@
 - [实测效果](#实测效果)
 - [怎么装](#怎么装)
 - [怎么确认生效](#怎么确认生效)
+- [源码](#源码)
 - [什么时候别用](#什么时候别用)
 - [常见问题](#常见问题)
 - [合规与免责](#合规与免责)
@@ -62,6 +63,22 @@
 
 - 最直接的办法：开一张单位多的图，框一大片点过去，看是不是快多了。
 - 没感觉？把游戏**完全退出**后再启动一次。
+
+## 源码
+
+完整可编译的源码已发布在 [`War3SmoothCommand/`](./War3SmoothCommand)：
+
+| 路径 | 作用 |
+|---|---|
+| `src/slotpatch/SlotPatch.cpp` | 补丁本体——按版本分派的字节补丁，约 400 行 |
+| `src/proxy/ijl15_proxy.cpp` | `ijl15.dll` 代理，自动加载补丁，让普通快捷方式也能生效 |
+| `src/injector/CavInject.cpp` | 便携注入器（`-game` / `-dll` / `-map`）|
+| `installer/War3Unlock.iss` | 生成安装包的 Inno Setup 脚本 |
+| `docs/DESIGN.md` | 队列原理与实测结论 |
+
+编译用 `build.bat`（需要装「使用 C++ 的桌面开发」的 Visual Studio）；
+装了 Inno Setup 6 的话，`package.bat` 还能直接产出安装程序。
+仓库不含任何暴雪的游戏文件，编译你本机的游戏即可。
 
 ## 什么时候别用
 

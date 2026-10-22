@@ -1,5 +1,25 @@
 # 更新日志
 
+## 源码公开 — 2026-10-22
+
+安装包功能与 v1.0.0 相同，本次**只新增源码**，不改动补丁行为。
+
+**新增**
+
+- 发布完整可编译的源码工程 [`War3SmoothCommand/`](./War3SmoothCommand)
+  - `src/slotpatch/SlotPatch.cpp` —— 补丁本体（按版本分派字节补丁，约 400 行）
+  - `src/proxy/ijl15_proxy.cpp` —— `ijl15.dll` 代理，自动加载补丁
+  - `src/injector/CavInject.cpp` —— 便携注入器
+  - `installer/War3Unlock.iss` —— 安装包脚本（与已发布的安装包一致）
+- `build.bat` 一键编译（MSVC x86，自动定位 Visual Studio）
+- `package.bat` 编译 + 同步 payload + 调用 Inno Setup 打包
+- `docs/DESIGN.md` —— 队列原理、逆向依据、实测结论与已排除的方向
+
+**说明**
+
+- 仓库不含任何暴雪游戏文件，也不含 `FPSUnlocker.mix`（第三方作品、无授权声明）
+- 仓库不含编译产物，首次使用请先运行 `build.bat`
+
 ## v1.0.0 — 2026-10-20
 
 首个公开版本。

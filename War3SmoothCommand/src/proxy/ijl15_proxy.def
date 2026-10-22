@@ -1,0 +1,10 @@
+; auto-generated: forward all exports to ijl15_orig.dll
+LIBRARY ijl15
+
+EXPORTS
+    ijlErrorStr=ijl15_orig.ijlErrorStr
+    ijlFree=ijl15_orig.ijlFree
+    ijlGetLibVersion=ijl15_orig.ijlGetLibVersion
+    ijlInit=ijl15_orig.ijlInit
+    ijlRead=ijl15_orig.ijlRead
+    ijlWrite=ijl15_orig.ijlWrite
